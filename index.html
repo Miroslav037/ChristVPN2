@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Network Defender VPN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0f1e;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #eef2ff;
+            padding-bottom: 80px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 16px 30px;
+        }
+
+        .card {
+            background: rgba(18, 25, 45, 0.9);
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .shield-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #1e2a5e, #0f172f);
+            border-radius: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            border: 1px solid #3b82f6;
+        }
+        .brand {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .sub {
+            font-size: 12px;
+            color: #8b9dc3;
+        }
+
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #0f1422;
+            padding: 14px 18px;
+            border-radius: 60px;
+            margin-bottom: 20px;
+        }
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 12px;
+            background: #ef4444;
+        }
+        .status-text {
+            flex: 1;
+            font-weight: 600;
+        }
+        .status-btn {
+            background: none;
+            border: none;
+            color: #60a5fa;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 5px 10px;
+        }
+
+        .section-title {
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 16px;
+        }
+
+        .tariff-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .tariff-item {
+            background: #111827;
+            border: 1px solid #2d3a5e;
+            border-radius: 20px;
+            padding: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tariff-item:active {
+            transform: scale(0.96);
+            background: #1a2440;
+        }
+        .tariff-name {
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .tariff-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: #facc15;
+            margin-top: 6px;
+        }
+        .tariff-badge {
+            font-size: 10px;
+            background: #facc15;
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-top: 6px;
+        }
+
+        .server-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #1f2a44;
+        }
+        .online {
+            color: #22c55e;
+        }
+
+        /* нижнее меню */
+        .bottom-menu {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #0a0f1e;
+            border-top: 1px solid #253456;
+            display: flex;
+justify-content: space-around;
+            padding: 10px 16px 22px;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+            z-index: 100;
+        }
+        .menu-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #7c8bb0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-family: inherit;
+        }
+        .menu-btn.active {
+            color: #3b82f6;
+        }
+        .menu-icon {
+            font-size: 24px;
+        }
+
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+
+        .plan-card {
+            background: #0f172f;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            border: 1px solid #2d3a5e;
+        }
+        .plan-card:active {
+            background: #1a2440;
+        }
+        .plan-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .plan-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: #facc15;
+        }
+
+        .help-step {
+            background: #0f172f;
+            padding: 14px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+        }
+
+        .demo-btn {
+            background: #2563eb;
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+        .demo-btn:active {
+            transform: scale(0.97);
+        }
+
+        .code-display {
+            background: #030712;
+            padding: 14px;
+            border-radius: 16px;
+            font-family: monospace;
+            margin-top: 12px;
+            word-break: break-all;
+            color: #a5f3c3;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- ГЛАВНАЯ СТРАНИЦА -->
+    <div id="pageHome" class="page active">
+        <div class="logo-area">
+            <div class="shield-icon">🛡️</div>
+            <div>
+                <div class="brand">NETWORK DEFENDER</div>
+                <div class="sub">Защита • Скорость • Приватность</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="status-row">
+                <div class="status-dot" id="statusDot"></div>
+                <div class="status-text" id="statusLabel">Не активна</div>
+                <button class="status-btn" id="statusActionBtn">Активировать</button>
+            </div>
+
+            <div class="section-title">⚡ Выбрать тариф</div>
+            <div class="tariff-grid" id="homeTariffs"></div>
+        </div>
+
+        <div class="card">
+            <div class="section-title">🌍 Серверные локации</div>
+            <div class="server-item"><span>🇫🇮 Финляндия</span><span class="online">🟢 Онлайн</span></div>
+            <div class="server-item"><span>🇪🇸 Испания</span><span class="online">🟢 Онлайн</span></div>
+            <div class="server-item"><span>🇩🇪 Германия</span><span class="online">🟢 Онлайн</span></div>
+            <div class="server-item"><span>🇳🇱 Нидерланды</span><span class="online">🟢 Онлайн</span></div>
+        </div>
+    </div>
+
+    <!-- СТРАНИЦА ТАРИФОВ -->
+    <div id="pagePlans" class="page">
+        <div class="card">
+            <h2 style="margin-bottom: 16px;">📋 Тарифные планы</h2>
+            <div id="plansContainer"></div>
+            <p style="font-size: 13px; color: #90a3cf; margin-top: 16px; text-align: center;">💳 После оплаты код придёт сюда</p>
+        </div>
+    </div>
+
+    <!-- СТРАНИЦА ПОМОЩИ -->
+    <div id="pageHelp" class="page">
+        <div class="card">
+<h2 style="margin-bottom: 16px;">📘 Как использовать VPN</h2>
+            <div class="help-step"><strong>1️⃣ Купите подписку</strong><br>Выберите тариф на вкладке «Тарифы»</div>
+            <div class="help-step"><strong>2️⃣ Получите ключ</strong><br>После оплаты вы увидите код для Happ</div>
+            <div class="help-step"><strong>3️⃣ Импортируйте в Happ</strong><br>Нажмите «➕ Импорт» и вставьте код</div>
+            <div class="help-step"><strong>4️⃣ Включите защиту</strong><br>Готово — вы под защитой</div>
+            <button class="demo-btn" id="demoPayBtn">🎟️ Демо-оплата (тест)</button>
+            <div id="demoCodeBlock" class="code-display" style="display: none;"></div>
+        </div>
+    </div>
+</div>
+
+<!-- НИЖНЕЕ МЕНЮ -->
+<div class="bottom-menu">
+    <button class="menu-btn active" data-page="home">
+        <span class="menu-icon">🏠</span>
+        <span>Главная</span>
+    </button>
+    <button class="menu-btn" data-page="plans">
+        <span class="menu-icon">📦</span>
+        <span>Тарифы</span>
+    </button>
+    <button class="menu-btn" data-page="help">
+        <span class="menu-icon">❓</span>
+        <span>Помощь</span>
+    </button>
+</div>
+
+<script>
+    // ========== ДАННЫЕ ==========
+    let isSubscribed = false;
+
+    const tariffList = [
+        { name: '1 месяц', price: '149 ₽', id: '1m' },
+        { name: '3 месяца', price: '400 ₽', id: '3m', badge: 'выгодно' },
+        { name: '6 месяцев', price: '750 ₽', id: '6m', badge: '🔥 хит' },
+        { name: '12 месяцев', price: '1350 ₽', id: '12m', badge: '⭐ максимум' }
+    ];
+
+    // ========== ЭЛЕМЕНТЫ ==========
+    const statusDot = document.getElementById('statusDot');
+    const statusLabel = document.getElementById('statusLabel');
+    const statusActionBtn = document.getElementById('statusActionBtn');
+
+    function updateStatus() {
+        if (isSubscribed) {
+            statusDot.style.background = '#22c55e';
+            statusLabel.innerText = 'Активна до ' + getExpiryDate();
+            statusActionBtn.innerText = 'Продлить';
+        } else {
+            statusDot.style.background = '#ef4444';
+            statusLabel.innerText = 'Не активна';
+            statusActionBtn.innerText = 'Активировать';
+        }
+    }
+
+    function getExpiryDate() {
+        let d = new Date();
+        d.setMonth(d.getMonth() + 1);
+        return d.toLocaleDateString();
+    }
+
+    // ========== ОПЛАТА ==========
+    function pay(planName, price) {
+        const code = HAPP://DEFENDER?user=${Math.random().toString(36).substring(2, 10)}&plan=${planName}&key=ND_${Date.now()};
+        alert(`✅ Оплачено: ${planName} - ${price}\n\n📱 Ваш код для Happ:\n${code}\n\nСохраните код и вставьте в приложение Happ`);
+        
+        isSubscribed = true;
+        updateStatus();
+        showPage('home');
+    }
+
+    // ========== ОТОБРАЖЕНИЕ ТАРИФОВ ==========
+    function renderHomeTariffs() {
+        const container = document.getElementById('homeTariffs');
+        if (!container) return;
+        container.innerHTML = '';
+        tariffList.forEach(t => {
+            const div = document.createElement('div');
+            div.className = 'tariff-item';
+            div.innerHTML = `
+                <div class="tariff-name">${t.name}</div>
+                <div class="tariff-price">${t.price}</div>
+                ${t.badge ? <div class="tariff-badge">${t.badge}</div> : ''}
+            `;
+            div.onclick = () => pay(t.name, t.price);
+            container.appendChild(div);
+        });
+    }
+
+    function renderPlansPage() {
+        const container = document.getElementById('plansContainer');
+        if (!container) return;
+        container.innerHTML = '';
+        tariffList.forEach(t => {
+            const div = document.createElement('div');
+            div.className = 'plan-card';
+            div.innerHTML = `
+                <div class="plan-row">
+                    <div><strong>${t.name}</strong></div>
+                    <div class="plan-price">${t.price}</div>
+                </div>
+            `;
+            div.onclick = () => pay(t.name, t.price);
+container.appendChild(div);
+        });
+    }
+
+    // ========== ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ ==========
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById(`page${pageId.charAt(0).toUpperCase() + pageId.slice(1)}`).classList.add('active');
+        
+        document.querySelectorAll('.menu-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-page') === pageId) {
+                btn.classList.add('active');
+            }
+        });
+        
+        if (pageId === 'plans') renderPlansPage();
+    }
+
+    // ========== ДЕМО-ОПЛАТА ==========
+    function demoPayment() {
+        const demoCode = HAPP://DEFENDER?demo=true&key=demo_${Date.now()}&expires=24h;
+        const block = document.getElementById('demoCodeBlock');
+        block.style.display = 'block';
+        block.innerHTML = 🧪 Тестовый код (скопируйте):<br>${demoCode}<br><br>⚠️ Демо-режим, для полного доступа оплатите тариф;
+        alert(`Демо-код:\n${demoCode}\n(скопируйте его для Happ)`);
+    }
+
+    // ========== ЗАПУСК ==========
+    function init() {
+        renderHomeTariffs();
+        renderPlansPage();
+        updateStatus();
+        
+        document.querySelectorAll('.menu-btn').forEach(btn => {
+            btn.onclick = () => showPage(btn.getAttribute('data-page'));
+        });
+        
+        statusActionBtn.onclick = () => showPage('plans');
+        
+        const demoBtn = document.getElementById('demoPayBtn');
+        if (demoBtn) demoBtn.onclick = demoPayment;
+    }
+    
+    init();
+</script>
+</body>
+</html>
