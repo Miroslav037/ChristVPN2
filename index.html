@@ -1,77 +1,77 @@
+> ㅤMiroslav:
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Network Defender VPN</title>
+    <title>ChristVPN - Защитник</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            user-select: none;
         }
 
         body {
             background: #0a0f1e;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            color: #eef2ff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: white;
             padding-bottom: 80px;
         }
 
         .container {
             max-width: 600px;
             margin: 0 auto;
-            padding: 20px 16px 30px;
+            padding: 20px 16px;
         }
 
+        /* карточки */
         .card {
-            background: rgba(18, 25, 45, 0.9);
+            background: #111827;
             border-radius: 24px;
             padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            margin-bottom: 16px;
+            border: 1px solid #1f2a44;
         }
 
-        .logo-area {
+        /* шапка */
+        .header {
             display: flex;
             align-items: center;
             gap: 12px;
             margin-bottom: 20px;
         }
-        .shield-icon {
-            width: 52px;
-            height: 52px;
-            background: linear-gradient(135deg, #1e2a5e, #0f172f);
-            border-radius: 26px;
+        .icon {
+            width: 50px;
+            height: 50px;
+            background: #1e2a5e;
+            border-radius: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 28px;
-            border: 1px solid #3b82f6;
         }
-        .brand {
-            font-size: 24px;
+        .title {
+            font-size: 22px;
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff, #60a5fa);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
         }
-        .sub {
+        .subtitle {
             font-size: 12px;
             color: #8b9dc3;
         }
 
-        .status-row {
+        /* статус */
+        .status-bar {
             display: flex;
             align-items: center;
             gap: 12px;
-            background: #0f1422;
-            padding: 14px 18px;
-            border-radius: 60px;
+            background: #0a0f1e;
+            padding: 14px 16px;
+            border-radius: 50px;
             margin-bottom: 20px;
         }
-        .status-dot {
+        .led {
             width: 12px;
             height: 12px;
             border-radius: 12px;
@@ -87,55 +87,44 @@
             color: #60a5fa;
             font-weight: 600;
             font-size: 14px;
+            padding: 8px 12px;
             cursor: pointer;
-            padding: 5px 10px;
         }
 
-        .section-title {
-            font-weight: 600;
-            margin-bottom: 12px;
-            font-size: 16px;
-        }
-
-        .tariff-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        /* кнопки тарифов - ГЛАВНОЕ, ЧТОБЫ НАЖИМАЛИСЬ */
+        .tariff-buttons {
+            display: flex;
+            flex-direction: column;
             gap: 10px;
+            margin-top: 12px;
         }
-        .tariff-item {
-            background: #111827;
-            border: 1px solid #2d3a5e;
-            border-radius: 20px;
-            padding: 14px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .tariff-item:active {
-            transform: scale(0.96);
+        .tariff-button {
             background: #1a2440;
+            border: 1px solid #2d3a5e;
+            border-radius: 60px;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.1s;
+        }
+        .tariff-button:active {
+            background: #2563eb;
+            transform: scale(0.98);
         }
         .tariff-name {
             font-weight: 700;
-            font-size: 15px;
+            font-size: 16px;
         }
         .tariff-price {
             font-size: 20px;
             font-weight: 800;
             color: #facc15;
-            margin-top: 6px;
-        }
-        .tariff-badge {
-            font-size: 10px;
-            background: #facc15;
-            color: #000;
-            padding: 2px 8px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 6px;
         }
 
-        .server-item {
+        /* серверы */
+        .server-row {
             display: flex;
             justify-content: space-between;
             padding: 12px 0;
@@ -146,64 +135,67 @@
         }
 
         /* нижнее меню */
-        .bottom-menu {
+        .bottom-nav {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
             background: #0a0f1e;
-            border-top: 1px solid #253456;
+            border-top: 1px solid #1f2a44;
             display: flex;
-justify-content: space-around;
-            padding: 10px 16px 22px;
+            justify-content: space-around;
+            padding: 12px 16px 24px;
             max-width: 600px;
             margin: 0 auto;
             width: 100%;
             z-index: 100;
         }
-        .menu-btn {
+        .nav-button {
+            background: none;
+            border: none;
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 6px;
             font-size: 12px;
             color: #7c8bb0;
-            background: none;
-            border: none;
+            padding: 8px 24px;
+
+> ㅤMiroslav:
+border-radius: 30px;
             cursor: pointer;
-            padding: 8px 20px;
-            border-radius: 30px;
             font-family: inherit;
         }
-        .menu-btn.active {
+        .nav-button:active {
+            background: #1a2440;
+        }
+        .nav-button.active {
             color: #3b82f6;
         }
-        .menu-icon {
+        .nav-icon {
             font-size: 24px;
         }
 
+        /* страницы */
         .page {
             display: none;
         }
-        .page.active {
+        .page.show {
             display: block;
         }
 
         .plan-card {
-            background: #0f172f;
+            background: #1a2440;
             border-radius: 20px;
             padding: 16px;
             margin-bottom: 12px;
-            cursor: pointer;
-            border: 1px solid #2d3a5e;
-        }
-        .plan-card:active {
-            background: #1a2440;
-        }
-        .plan-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            cursor: pointer;
+        }
+        .plan-card:active {
+            background: #2563eb;
         }
         .plan-price {
             font-size: 22px;
@@ -211,14 +203,14 @@ justify-content: space-around;
             color: #facc15;
         }
 
-        .help-step {
-            background: #0f172f;
-            padding: 14px;
-            border-radius: 16px;
+        .help-block {
+            background: #1a2440;
+            border-radius: 20px;
+            padding: 16px;
             margin-bottom: 12px;
         }
 
-        .demo-btn {
+        .demo-button {
             background: #2563eb;
             border: none;
             padding: 14px;
@@ -230,213 +222,218 @@ justify-content: space-around;
             cursor: pointer;
             margin-top: 12px;
         }
-        .demo-btn:active {
+        .demo-button:active {
             transform: scale(0.97);
-        }
-
-        .code-display {
-            background: #030712;
-            padding: 14px;
-            border-radius: 16px;
-            font-family: monospace;
-            margin-top: 12px;
-            word-break: break-all;
-            color: #a5f3c3;
-            font-size: 12px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- ГЛАВНАЯ СТРАНИЦА -->
-    <div id="pageHome" class="page active">
-        <div class="logo-area">
-            <div class="shield-icon">🛡️</div>
+    <!-- ========== СТРАНИЦА 1: ГЛАВНАЯ ========== -->
+    <div id="homePage" class="page show">
+        <div class="header">
+            <div class="icon">🛡️</div>
             <div>
-                <div class="brand">NETWORK DEFENDER</div>
-                <div class="sub">Защита • Скорость • Приватность</div>
+                <div class="title">CHRIST VPN</div>
+                <div class="subtitle">Защитник • Скорость • Приватность</div>
             </div>
         </div>
 
         <div class="card">
-            <div class="status-row">
-                <div class="status-dot" id="statusDot"></div>
+            <div class="status-bar">
+                <div class="led" id="statusLed"></div>
                 <div class="status-text" id="statusLabel">Не активна</div>
-                <button class="status-btn" id="statusActionBtn">Активировать</button>
+                <button class="status-btn" id="activateBtn">Активировать</button>
             </div>
 
-            <div class="section-title">⚡ Выбрать тариф</div>
-            <div class="tariff-grid" id="homeTariffs"></div>
+            <div style="font-weight: 600; margin-bottom: 8px;">⚡ Выбрать тариф</div>
+            <div class="tariff-buttons" id="homeTariffs"></div>
         </div>
 
         <div class="card">
-            <div class="section-title">🌍 Серверные локации</div>
-            <div class="server-item"><span>🇫🇮 Финляндия</span><span class="online">🟢 Онлайн</span></div>
-            <div class="server-item"><span>🇪🇸 Испания</span><span class="online">🟢 Онлайн</span></div>
-            <div class="server-item"><span>🇩🇪 Германия</span><span class="online">🟢 Онлайн</span></div>
-            <div class="server-item"><span>🇳🇱 Нидерланды</span><span class="online">🟢 Онлайн</span></div>
-        </div>
-    </div>
-
-    <!-- СТРАНИЦА ТАРИФОВ -->
-    <div id="pagePlans" class="page">
-        <div class="card">
-            <h2 style="margin-bottom: 16px;">📋 Тарифные планы</h2>
-            <div id="plansContainer"></div>
-            <p style="font-size: 13px; color: #90a3cf; margin-top: 16px; text-align: center;">💳 После оплаты код придёт сюда</p>
+            <div style="font-weight: 600; margin-bottom: 12px;">🌍 Серверные локации</div>
+            <div class="server-row"><span>🇫🇮 Финляндия</span><span class="online">🟢 Онлайн</span></div>
+            <div class="server-row"><span>🇪🇸 Испания</span><span class="online">🟢 Онлайн</span></div>
+            <div class="server-row"><span>🇩🇪 Германия</span><span class="online">🟢 Онлайн</span></div>
+            <div class="server-row"><span>🇳🇱 Нидерланды</span><span class="online">🟢 Онлайн</span></div>
         </div>
     </div>
 
-    <!-- СТРАНИЦА ПОМОЩИ -->
-    <div id="pageHelp" class="page">
+    <!-- ========== СТРАНИЦА 2: ТАРИФЫ ========== -->
+    <div id="plansPage" class="page">
         <div class="card">
-<h2 style="margin-bottom: 16px;">📘 Как использовать VPN</h2>
-            <div class="help-step"><strong>1️⃣ Купите подписку</strong><br>Выберите тариф на вкладке «Тарифы»</div>
-            <div class="help-step"><strong>2️⃣ Получите ключ</strong><br>После оплаты вы увидите код для Happ</div>
-            <div class="help-step"><strong>3️⃣ Импортируйте в Happ</strong><br>Нажмите «➕ Импорт» и вставьте код</div>
-            <div class="help-step"><strong>4️⃣ Включите защиту</strong><br>Готово — вы под защитой</div>
-            <button class="demo-btn" id="demoPayBtn">🎟️ Демо-оплата (тест)</button>
-            <div id="demoCodeBlock" class="code-display" style="display: none;"></div>
+            <h2 style="margin-bottom: 16px;">📋 Тарифы</h2>
+            <div id="allPlansList"></div>
+            <div style="font-size: 13px; color: #90a3cf; text-align: center; margin-top: 16px;">💳 После оплаты — код для Happ</div>
+        </div>
+    </div>
+
+    <!-- ========== СТРАНИЦА 3: ПОМОЩЬ ========== -->
+    <div id="helpPage" class="page">
+        <div class="card">
+            <h2 style="margin-bottom: 16px;">📘 Как использовать</h2>
+            <div class="help-block"><strong>1️⃣ Купите подписку</strong><br>Выберите тариф</div>
+            <div class="help-block"><strong>2️⃣ Получите ключ</strong><br>Вам покажется код для Happ</div>
+            <div class="help-block"><strong>3️⃣ Вставьте в Happ</strong><br>Импорт → код → подключение</div>
+            <div class="help-block"><strong>4️⃣ Готово</strong><br>Вы защищены</div>
+            <button class="demo-button" id="demoPayHelpBtn">🎟️ Демо-оплата</button>
+
+> ㅤMiroslav:
+<div id="demoCodeArea" style="background:#030712; padding:12px; border-radius:16px; margin-top:12px; font-family:monospace; font-size:12px; display:none;"></div>
         </div>
     </div>
 </div>
 
-<!-- НИЖНЕЕ МЕНЮ -->
-<div class="bottom-menu">
-    <button class="menu-btn active" data-page="home">
-        <span class="menu-icon">🏠</span>
+<!-- ========== НИЖНЕЕ МЕНЮ ========== -->
+<div class="bottom-nav">
+    <button class="nav-button active" data-nav="home">
+        <span class="nav-icon">🏠</span>
         <span>Главная</span>
     </button>
-    <button class="menu-btn" data-page="plans">
-        <span class="menu-icon">📦</span>
+    <button class="nav-button" data-nav="plans">
+        <span class="nav-icon">📦</span>
         <span>Тарифы</span>
     </button>
-    <button class="menu-btn" data-page="help">
-        <span class="menu-icon">❓</span>
+    <button class="nav-button" data-nav="help">
+        <span class="nav-icon">❓</span>
         <span>Помощь</span>
     </button>
 </div>
 
 <script>
-    // ========== ДАННЫЕ ==========
-    let isSubscribed = false;
+    // ==================== ДАННЫЕ ====================
+    let isActive = false;  // статус подписки
 
-    const tariffList = [
-        { name: '1 месяц', price: '149 ₽', id: '1m' },
-        { name: '3 месяца', price: '400 ₽', id: '3m', badge: 'выгодно' },
-        { name: '6 месяцев', price: '750 ₽', id: '6m', badge: '🔥 хит' },
-        { name: '12 месяцев', price: '1350 ₽', id: '12m', badge: '⭐ максимум' }
+    const tariffs = [
+        { name: "1 месяц", price: "149 ₽" },
+        { name: "3 месяца", price: "400 ₽" },
+        { name: "6 месяцев", price: "750 ₽" },
+        { name: "12 месяцев", price: "1350 ₽" }
     ];
 
-    // ========== ЭЛЕМЕНТЫ ==========
-    const statusDot = document.getElementById('statusDot');
+    // ==================== ЭЛЕМЕНТЫ ====================
+    const statusLed = document.getElementById('statusLed');
     const statusLabel = document.getElementById('statusLabel');
-    const statusActionBtn = document.getElementById('statusActionBtn');
+    const activateBtn = document.getElementById('activateBtn');
 
-    function updateStatus() {
-        if (isSubscribed) {
-            statusDot.style.background = '#22c55e';
-            statusLabel.innerText = 'Активна до ' + getExpiryDate();
-            statusActionBtn.innerText = 'Продлить';
+    // обновить статус на главной
+    function updateStatusUI() {
+        if (isActive) {
+            statusLed.style.background = "#22c55e";
+            statusLabel.innerText = "Активна до " + getExpiry();
+            activateBtn.innerText = "Продлить";
         } else {
-            statusDot.style.background = '#ef4444';
-            statusLabel.innerText = 'Не активна';
-            statusActionBtn.innerText = 'Активировать';
+            statusLed.style.background = "#ef4444";
+            statusLabel.innerText = "Не активна";
+            activateBtn.innerText = "Активировать";
         }
     }
 
-    function getExpiryDate() {
+    function getExpiry() {
         let d = new Date();
         d.setMonth(d.getMonth() + 1);
         return d.toLocaleDateString();
     }
 
-    // ========== ОПЛАТА ==========
-    function pay(planName, price) {
-        const code = HAPP://DEFENDER?user=${Math.random().toString(36).substring(2, 10)}&plan=${planName}&key=ND_${Date.now()};
-        alert(`✅ Оплачено: ${planName} - ${price}\n\n📱 Ваш код для Happ:\n${code}\n\nСохраните код и вставьте в приложение Happ`);
+    // ==================== ОПЛАТА ====================
+    function handlePayment(planName, price) {
+        // Генерируем код для Happ
+        const code = HAPP://CHRISTVPN?user=${Math.random().toString(36).substring(2, 10)}&plan=${planName}&date=${Date.now()};
         
-        isSubscribed = true;
-        updateStatus();
+        // Показываем код
+        alert(`✅ Оплачено: ${planName} - ${price}\n\n📱 ВАШ КОД ДЛЯ HAPP:\n${code}\n\nСкопируйте и вставьте в приложение Happ`);
+        
+        // Активируем подписку
+        isActive = true;
+        updateStatusUI();
+        
+        // Переключаем на главную страницу
         showPage('home');
     }
 
-    // ========== ОТОБРАЖЕНИЕ ТАРИФОВ ==========
+    // ==================== ОТРИСОВКА КНОПОК ====================
     function renderHomeTariffs() {
         const container = document.getElementById('homeTariffs');
         if (!container) return;
         container.innerHTML = '';
-        tariffList.forEach(t => {
+        tariffs.forEach(t => {
+            const btn = document.createElement('div');
+            btn.className = 'tariff-button';
+            btn.innerHTML = <span class="tariff-name">${t.name}</span><span class="tariff-price">${t.price}</span>;
+            btn.onclick = () => handlePayment(t.name, t.price);
+            container.appendChild(btn);
+        });
+    }
+
+    function renderAllPlans() {
+        const container = document.getElementById('allPlansList');
+        if (!container) return;
+        container.innerHTML = '';
+        tariffs.forEach(t => {
             const div = document.createElement('div');
-            div.className = 'tariff-item';
-            div.innerHTML = `
-                <div class="tariff-name">${t.name}</div>
-                <div class="tariff-price">${t.price}</div>
-                ${t.badge ? <div class="tariff-badge">${t.badge}</div> : ''}
-            `;
-            div.onclick = () => pay(t.name, t.price);
+            div.className = 'plan-card';
+            div.innerHTML = <span><strong>${t.name}</strong></span><span class="plan-price">${t.price}</span>;
+            div.onclick = () => handlePayment(t.name, t.price);
             container.appendChild(div);
         });
     }
 
-    function renderPlansPage() {
-        const container = document.getElementById('plansContainer');
-        if (!container) return;
-        container.innerHTML = '';
-        tariffList.forEach(t => {
-            const div = document.createElement('div');
-            div.className = 'plan-card';
-            div.innerHTML = `
-                <div class="plan-row">
-                    <div><strong>${t.name}</strong></div>
-                    <div class="plan-price">${t.price}</div>
-                </div>
-            `;
-            div.onclick = () => pay(t.name, t.price);
-container.appendChild(div);
-        });
-    }
-
-    // ========== ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ ==========
+    // ==================== ПЕРЕКЛЮЧЕНИЕ СТРАНИЦ ====================
     function showPage(pageId) {
+        // скрыть все страницы
         document.querySelectorAll('.page').forEach(page => {
-            page.classList.remove('active');
+            page.classList.remove('show');
         });
-        document.getElementById(`page${pageId.charAt(0).toUpperCase() + pageId.slice(1)}`).classList.add('active');
+        // показать нужную
+        const target = document.getElementById(pageId + 'Page');
+        if (target) target.classList.add('show');
         
-        document.querySelectorAll('.menu-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('data-page') === pageId) {
+        // подсветить кнопку в меню
+        document.querySelectorAll('.nav-button').forEach(btn => {
+            btn.
+
+> ㅤMiroslav:
+classList.remove('active');
+            if (btn.getAttribute('data-nav') === pageId) {
                 btn.classList.add('active');
             }
         });
         
-        if (pageId === 'plans') renderPlansPage();
+        // если открыли тарифы — перерисовать
+        if (pageId === 'plans') renderAllPlans();
     }
 
-    // ========== ДЕМО-ОПЛАТА ==========
+    // ==================== ДЕМО-ОПЛАТА (из помощи) ====================
     function demoPayment() {
-        const demoCode = HAPP://DEFENDER?demo=true&key=demo_${Date.now()}&expires=24h;
-        const block = document.getElementById('demoCodeBlock');
-        block.style.display = 'block';
-        block.innerHTML = 🧪 Тестовый код (скопируйте):<br>${demoCode}<br><br>⚠️ Демо-режим, для полного доступа оплатите тариф;
-        alert(`Демо-код:\n${demoCode}\n(скопируйте его для Happ)`);
+        const demoCode = HAPP://CHRISTVPN?demo=true&demo_key=DEMO_${Date.now()};
+        const area = document.getElementById('demoCodeArea');
+        area.style.display = 'block';
+        area.innerHTML = 🧪 Демо-код для Happ:<br>${demoCode}<br><br>⚠️ Это тест, для реальной работы оплатите тариф;
+        alert(`Демо-код:\n${demoCode}`);
     }
 
-    // ========== ЗАПУСК ==========
+    // ==================== ЗАПУСК ====================
     function init() {
         renderHomeTariffs();
-        renderPlansPage();
-        updateStatus();
+        renderAllPlans();
+        updateStatusUI();
         
-        document.querySelectorAll('.menu-btn').forEach(btn => {
-            btn.onclick = () => showPage(btn.getAttribute('data-page'));
+        // кнопка "Активировать" на главной
+        if (activateBtn) {
+            activateBtn.onclick = () => showPage('plans');
+        }
+        
+        // нижняя навигация
+        document.querySelectorAll('.nav-button').forEach(btn => {
+            btn.onclick = () => {
+                const page = btn.getAttribute('data-nav');
+                showPage(page);
+            };
         });
         
-        statusActionBtn.onclick = () => showPage('plans');
-        
-        const demoBtn = document.getElementById('demoPayBtn');
+        // демо-кнопка в помощи
+        const demoBtn = document.getElementById('demoPayHelpBtn');
         if (demoBtn) demoBtn.onclick = demoPayment;
     }
     
